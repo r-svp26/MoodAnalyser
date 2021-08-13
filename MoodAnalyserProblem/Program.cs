@@ -4,9 +4,14 @@ namespace MoodAnalyserProblem
 {
     class Program
     {
+        /// <summary>
+        /// main method
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Mood Analyser Programs.");
+            string message = MoodAnalyser.AnalyseMood("I am Happy");
+            Console.WriteLine("Mood is:" + message);
         }
     }
 }
