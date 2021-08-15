@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static MoodAnalyserProblem.MoodAnalyserException;
 
 namespace MoodAnalyserProblem
 {
@@ -18,15 +19,27 @@ namespace MoodAnalyserProblem
         /// <returns>happy or sad mood </returns>
         public string AnalyseMood()
         {
-            try
+            try 
             {
                 message = message.ToLower();
-                if (message.Contains("Happy"))
+                if (message == null)
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "Mood is null");
+                }
+                if (message.Equals(string.Empty))
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_MOOD, "Mood is empty");
+                }
+                if (message.Contains("happy"))
+                {
                     return "happy";
+                }
                 else
-                    return "SAD";
+                {
+                    return "sad";
+                }
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException)
             {
                 return "happy";
             }
