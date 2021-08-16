@@ -8,6 +8,16 @@ namespace MoodAnalyserProblem
     public class MoodAnalyser
     {
         public string message;
+        /// <summary>
+        /// default contructor
+        /// </summary>
+        public MoodAnalyser()
+        {
+        }
+        /// <summary>
+        /// parameterized contructor
+        /// </summary>
+        /// <param name="message"></param>
         public MoodAnalyser(string message)
         {
             this.message = message;
