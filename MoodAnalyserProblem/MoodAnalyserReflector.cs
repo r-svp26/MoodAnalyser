@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace MoodAnalyserProblem
 {
-    public class MoodAnalyserFactory
+    public class MoodAnalyserReflector
     {
         /// <summary>
         /// CreateMoodAnalyse method to create object of MoodAnalyse class.
@@ -82,7 +83,7 @@ namespace MoodAnalyserProblem
         /// <param name="constructorName"></param>
         /// <param name="message"></param>
         /// <returns></returns>
-        public static object CreateMoodAnalyserOptionalVariable(string className, string constructorName, string message, string msg="I am optional variable")
+        public static object CreateMoodAnalyserOptionalVariable(string className, string constructorName, string message, string msg = "I am optional variable")
         {
             Type type = Type.GetType(className);
             try
@@ -120,13 +121,13 @@ namespace MoodAnalyserProblem
         {
             try
             {
-                Type type = Type.GetType("MoodAnalyser.MoodAnalyser");
-                object moodAnalyseObject = MoodAnalyserFactory.CreateMoodAnalyserParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", message);
+                Type type = Type.GetType("MoodAnalyser.AnalyseMood");
+                object moodAnalyseObject = MoodAnalyserReflector.CreateMoodAnalyserParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", message);
                 MethodInfo methodInfo = type.GetMethod(methodName);
                 object mood = methodInfo.Invoke(moodAnalyseObject, null);
                 return mood.ToString();
             }
-            catch ( NullReferenceException e)
+            catch (NullReferenceException e)
             {
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "No method found");
             }
